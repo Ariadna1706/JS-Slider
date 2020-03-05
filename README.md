@@ -1,6 +1,6 @@
 # JS Slider w wersji klasowej 
 
-Ostatnio tworzyliśmy pokaz slajdów, który będziemy chcieli przebudować wykorzystując poznane rozwiązania.
+Twój poprzednik stworzył pokaz slajdów, który masz przebudować wykorzystując najnowsze standardy języka JavaScript.
 
 Utworzymy klasę będąca modułem, który będzie reprezentował nasz Slider. Wspomniana klasa powinna być umieszczona w osobnym pliku, który importujemy w odpowiednim miejscu (pamiętaj również o eksporcie tej klasy).
 
@@ -15,9 +15,9 @@ Wykorzystaj Webpack-a, aby napisany kod w JavaScript był wpierany przez starsze
 
 ## Implementacja
 
-W plikach znajdziesz kod implementujący Slider wykorzystując funkcję. Jednak nic nie stoi na przeszkodzie, aby użyć rozwiązania, które ostatnio sam napisałeś.
+W plikach znajdziesz kod implementujący Slider wykorzystując funkcję. Znajdziesz tam również nie usunięte komentarze, które miały ułatwić zbudowanie odpowiedniej logiki.
 
-Zadanie ma być tak wykonane, aby poniższy kod uruchamiał całą mechinę:
+Zadanie ma być wykonane w taki sposób, aby poniższy kod uruchamiał całą mechanikę naszego rozwiązania:
 
 ```
 import JSSlider from './modules/JSSlider';
@@ -37,6 +37,6 @@ document.addEventListener('DOMContentLoaded', init);
 
 Najlepszym sposobem rozwiązania tego zadania będzie zbudowanie klasy od zera stopniowo przenosząc poszczególne rozwiązania z funkcji do metod danej klasy.
 
-Kiedy już przeniesiesz rozwiązania 1 do 1 to wtedy możesz zastanowić sie nad refaktoryzacją kodu.
+Kiedy już przeniesiesz rozwiązania 1 do 1 to wtedy możesz zastanowić sie nad [refaktoryzacją kodu](https://pl.wikipedia.org/wiki/Refaktoryzacja).
 
 Pamiętaj, że im cześciej sprawdzasz przenoszony kod tym łatwiej będzie Ci się w nim odnaleźć.
