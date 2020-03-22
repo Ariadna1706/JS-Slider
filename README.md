@@ -1,4 +1,4 @@
-# JS Slider w wersji klasowej 
+# JavaScript: ECMAScript 2015+ 
 
 Twój poprzednik stworzył pokaz slajdów, który masz przebudować wykorzystując najnowsze standardy języka JavaScript.
 
