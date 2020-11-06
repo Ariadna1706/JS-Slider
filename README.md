@@ -39,3 +39,22 @@ Najlepszym sposobem rozwiązania tego zadania będzie zbudowanie klasy od zera. 
 Kiedy już przeniesiesz rozwiązania 1 do 1, to wtedy możesz zastanowić się nad [refaktoryzacją kodu](https://pl.wikipedia.org/wiki/Refaktoryzacja).
 
 Pamiętaj, że im częściej sprawdzasz przenoszony kod, tym łatwiej będzie Ci się w nim odnaleźć.
+## Zadania dodatkowe
+
+### Zadanie 1
+
+Postaraj się wykorzystać właściwości obiektu ('this.imagesList'), zamiast przekazywać wartości zmiennych przez parametry funkcji ('initEvents(imagesList, sliderRootElement)').
+
+To rozwiązanie zastosuj tylko dla zmiennych, które są wykorzystywane w różnych metodach.
+
+### Zadanie 2
+
+Utwórz 2 dodatkowe 'CustomEvent' o nazwach 'js-slider-start' oraz 'js-slider-stop'. Ich zadaniem jest uruchomienie lub zatrzymanie automatycznego przełączania zdjęć.
+
+Zdarzenie 'js-slider-start' jest uruchamiane w 2 przypadkach.
+- po kliknięciu w zdjęcie,
+- po zjechaniu kursorem ze strzałki.
+
+Zdarzenie 'js-slider-stop' jest uruchamiane, gdy użytkownik najedzie kursorem na strzałkę.
+
+**Uwaga!** Pamiętaj, aby sprawdzić, czy wszystko działa poprawnie, kiedy pokaz slajdów jest uruchamiany i zatrzymywany wieloktronie.
