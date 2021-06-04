@@ -1,3 +1,10 @@
+> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
+> 
+> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+
+&nbsp;
+
+
 # JavaScript: ECMAScript 2015+ 
 
 Twój poprzednik stworzył pokaz slajdów, który masz przebudować. Wykorzystaj w tym celu najnowsze standardy języka JavaScript.
@@ -58,3 +65,10 @@ Zdarzenie 'js-slider-start' jest uruchamiane w 2 przypadkach.
 Zdarzenie 'js-slider-stop' jest uruchamiane, gdy użytkownik najedzie kursorem na strzałkę.
 
 **Uwaga!** Pamiętaj, aby sprawdzić, czy wszystko działa poprawnie, kiedy pokaz slajdów jest uruchamiany i zatrzymywany wieloktronie.
+
+
+&nbsp;
+
+> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
+> 
+> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
