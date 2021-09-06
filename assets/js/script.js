@@ -99,14 +99,13 @@ const onImageClick = function(event, sliderRootElement, imagesSelector) {
     const groupName = event.currentTarget.dataset.sliderGroupName;
     const thumbsList = document.querySelectorAll(imagesSelector+'[data-slider-group-name='+ groupName +']');
     const prototype = document.querySelector('.js-slider__thumbs-item--prototype');
-    thumbsList.forEach( (item, index) => {
+    thumbsList.forEach( (item) => {
         const thumbElement = prototype.cloneNode(true);
         thumbElement.classList.remove('js-slider__thumbs-item--prototype');
         const thumbImg = thumbElement.querySelector('img');
         thumbImg.src = item.querySelector('img').src;
         if(thumbImg.src === src) {
             thumbImg.classList.add('js-slider__thumbs-image--current');
-            this.currentImgGroupIndex = index;
         }
 
         document.querySelector('.js-slider__thumbs').appendChild(thumbElement);
