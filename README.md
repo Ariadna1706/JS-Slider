@@ -19,6 +19,18 @@ Każda metoda powinna realizować jedno zadanie ([zasada pojedynczej odpowiedzia
 
 Wykorzystaj webpacka, aby napisany kod JavaScript był wspierany przez starsze przeglądarki, tj. wszystkie wydane np. po 2016 roku i posiadające udział w rynku na poziomie co najmniej 1%.
 
+**Uwaga:** Jeżeli po instalacji potrzebnych paczek uruchomiłeś projekt, lecz obrazy nie wczytują się, to prawdopodobnie zainstalowałeś webpack-dev-server w wersji powyżej 4. Wówczas wystarczy, że w pliku `webpack.config.js` określisz miejsce, z którego grafiki mają być serwowane. Możesz to zrobić przy pomocy tego ustawienia: 
+```
+const path = require('path');
+module.exports = {
+    // ...
+    devServer: {
+        static: './',
+    },
+}
+```
+Szczegóły znajdziesz w [dokumentacji webpacka](https://webpack.js.org/configuration/dev-server/#devserverstatic).
+
 ## Implementacja
 
 W plikach znajdziesz kod implementujący slider oraz nieusunięte komentarze, które miały ułatwić zbudowanie odpowiedniej logiki.
