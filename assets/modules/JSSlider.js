@@ -4,7 +4,6 @@ export default class JSSlider {
     this.sliderRootSelector = ".js-slider";
     this.imagesList = document.querySelectorAll(imagesSelector);
     this.sliderRootElement = document.querySelector(this.sliderRootSelector);
-     
   }
 
   run() {
@@ -69,11 +68,9 @@ export default class JSSlider {
     sliderRootElement.addEventListener("js-slider-close", this.onClose);
   }
 
-  onImageClick(event, sliderRootElement, imagesSelector) {
-    sliderRootElement.classList.add("js-slider--active");
-    const src = event.currentTarget.querySelector("img").src;
-    console.log(src)
-    sliderRootElement.querySelector(".js-slider__image").src = src;
+  
+
+  createThumbElement(event,imagesSelector, thumbImg){
     const groupName = event.currentTarget.dataset.sliderGroupName;
     const thumbsList = document.querySelectorAll(
       `${imagesSelector}[data-slider-group-name=${groupName}] `
@@ -81,6 +78,35 @@ export default class JSSlider {
     const prototype = document.querySelector(
       ".js-slider__thumbs-item--prototype"
     );
+
+    thumbsList.forEach((item) => {
+      const thumbElement = prototype.cloneNode(true);
+      thumbElement.classList.remove("js-slider__thumbs-item--prototype");
+      const thumbImg = thumbElement.querySelector("img");
+      this.thumbImg.src = item.querySelector("img").src;
+      if (this.thumbImg.src === src) {
+        thumbImg.classList.add("js-slider__thumbs-image--current");
+      }
+      return document.querySelector(".js-slider__thumbs").appendChild(thumbElement);
+    });
+  }
+
+
+
+  
+
+  onImageClick(event, sliderRootElement, imagesSelector) {
+    sliderRootElement.classList.add("js-slider--active");
+    const src = event.currentTarget.querySelector("img").src;
+    sliderRootElement.querySelector(".js-slider__image").src = src;
+    const groupName = event.currentTarget.dataset.sliderGroupName;
+   /* const thumbsList = document.querySelectorAll(
+      `${imagesSelector}[data-slider-group-name=${groupName}] `
+    );
+    const prototype = document.querySelector(
+      ".js-slider__thumbs-item--prototype"
+    );
+
     thumbsList.forEach((item) => {
       const thumbElement = prototype.cloneNode(true);
       thumbElement.classList.remove("js-slider__thumbs-item--prototype");
@@ -90,14 +116,24 @@ export default class JSSlider {
         thumbImg.classList.add("js-slider__thumbs-image--current");
       }
       document.querySelector(".js-slider__thumbs").appendChild(thumbElement);
-    });
+    });*/
+
+    const thumbElement = this.createThumbElement(imagesSelector, thumbImg);
+  }
+
+  createParentCurrent() {
+    const currentClassName = "js-slider__thumbs-image--current";
+    const current = this.querySelector(`.${currentClassName}`);
+    const parentCurrent = current.parentElement;
+    return parentCurrent;
   }
 
   onImageNext(event) {
     console.log(this, "onImageNext");
-    const currentClassName = "js-slider__thumbs-image--current";
-    const current = this.querySelector(`.${currentClassName}`);
-    const parentCurrent = current.parentElement;
+    //const currentClassName = "js-slider__thumbs-image--current";
+    //const current = this.querySelector(`.${currentClassName}`);
+    //const parentCurrent = current.parentElement;
+    const parentCurrent = this.createParentCurrent();
     const nextElement = parentCurrent.nextElementSibling;
     if (
       nextElement &&
@@ -113,9 +149,10 @@ export default class JSSlider {
 
   onImagePrev(event) {
     console.log(this, "onImagePrev");
-    const currentClassName = "js-slider__thumbs-image--current";
-    const current = this.querySelector(`.${currentClassName}`);
-    const parentCurrent = current.parentElement;
+    //const currentClassName = "js-slider__thumbs-image--current";
+    //const current = this.querySelector(`.${currentClassName}`);
+    // const parentCurrent = current.parentElement;
+    const parentCurrent = this.createParentCurrent();
     const prevElement = parentCurrent.previousElementSibling;
     if (
       prevElement &&
