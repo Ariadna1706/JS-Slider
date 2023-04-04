@@ -63,114 +63,115 @@ export default class JSSlider {
       });
     });
 
-    sliderRootElement.addEventListener("js-slider-img-next", this.onImageNext);
-    sliderRootElement.addEventListener("js-slider-img-prev", this.onImagePrev);
+    sliderRootElement.addEventListener("js-slider-img-next", () =>
+      this.onImageNext()
+    );
+    sliderRootElement.addEventListener("js-slider-img-prev", () =>
+      this.onImagePrev()
+    );
     sliderRootElement.addEventListener("js-slider-close", this.onClose);
   }
 
-  
+  onImageClick(event, sliderRootElement, imagesSelector) {
+    sliderRootElement.classList.add("js-slider--active");
 
-  createThumbElement(event,imagesSelector, thumbImg){
+    const src = this.getCurrentImageSrc(event);
+
+    this.setCurrentImageSrc(sliderRootElement, src);
+
     const groupName = event.currentTarget.dataset.sliderGroupName;
+
+    this.prepareThumbList(imagesSelector, groupName, src);
+  }
+
+  setCurrentImageSrc(sliderRootElement, currentSrc) {
+    sliderRootElement.querySelector(".js-slider__image").src = currentSrc;
+  }
+
+  getCurrentImageSrc(event) {
+    return event.currentTarget.querySelector("img").src;
+  }
+
+  prepareThumbList(imagesSelector, groupName, currentSrc) {
     const thumbsList = document.querySelectorAll(
       `${imagesSelector}[data-slider-group-name=${groupName}] `
     );
     const prototype = document.querySelector(
       ".js-slider__thumbs-item--prototype"
     );
-
     thumbsList.forEach((item) => {
-      const thumbElement = prototype.cloneNode(true);
-      thumbElement.classList.remove("js-slider__thumbs-item--prototype");
-      const thumbImg = thumbElement.querySelector("img");
-      this.thumbImg.src = item.querySelector("img").src;
-      if (this.thumbImg.src === src) {
-        thumbImg.classList.add("js-slider__thumbs-image--current");
-      }
-      return document.querySelector(".js-slider__thumbs").appendChild(thumbElement);
+      const thumbElement = this.createthumbElement(prototype);
+      this.prepareThumbImg(thumbElement, item, currentSrc);
+
+      document.querySelector(".js-slider__thumbs").appendChild(thumbElement);
     });
   }
 
-
-
-  
-
-  onImageClick(event, sliderRootElement, imagesSelector) {
-    sliderRootElement.classList.add("js-slider--active");
-    const src = event.currentTarget.querySelector("img").src;
-    sliderRootElement.querySelector(".js-slider__image").src = src;
-    const groupName = event.currentTarget.dataset.sliderGroupName;
-   /* const thumbsList = document.querySelectorAll(
-      `${imagesSelector}[data-slider-group-name=${groupName}] `
-    );
-    const prototype = document.querySelector(
-      ".js-slider__thumbs-item--prototype"
-    );
-
-    thumbsList.forEach((item) => {
-      const thumbElement = prototype.cloneNode(true);
-      thumbElement.classList.remove("js-slider__thumbs-item--prototype");
-      const thumbImg = thumbElement.querySelector("img");
-      thumbImg.src = item.querySelector("img").src;
-      if (thumbImg.src === src) {
-        thumbImg.classList.add("js-slider__thumbs-image--current");
-      }
-      document.querySelector(".js-slider__thumbs").appendChild(thumbElement);
-    });*/
-
-    const thumbElement = this.createThumbElement(imagesSelector, thumbImg);
+  createthumbElement(proto) {
+    const thumbElement = proto.cloneNode(true);
+    thumbElement.classList.remove("js-slider__thumbs-item--prototype");
+    return thumbElement;
   }
-
-  createParentCurrent() {
-    const currentClassName = "js-slider__thumbs-image--current";
-    const current = this.querySelector(`.${currentClassName}`);
-    const parentCurrent = current.parentElement;
-    return parentCurrent;
+  prepareThumbImg(thumbEl, thumbsListElement, currentSrc) {
+    const thumbImg = thumbEl.querySelector("img");
+    thumbImg.src = thumbsListElement.querySelector("img").src;
+    if (thumbImg.src === currentSrc) {
+      thumbImg.classList.add("js-slider__thumbs-image--current");
+    }
   }
 
   onImageNext(event) {
     console.log(this, "onImageNext");
-    //const currentClassName = "js-slider__thumbs-image--current";
-    //const current = this.querySelector(`.${currentClassName}`);
-    //const parentCurrent = current.parentElement;
-    const parentCurrent = this.createParentCurrent();
+    const currentClassName = "js-slider__thumbs-image--current";
+    const current = document.querySelector(`.${currentClassName}`);
+    const parentCurrent = current.parentElement;
     const nextElement = parentCurrent.nextElementSibling;
     if (
       nextElement &&
       !nextElement.className.includes("js-slider__thumbs-item--prototype")
     ) {
-      const img = nextElement.querySelector("img");
-      img.classList.add(currentClassName);
-
-      this.querySelector(".js-slider__image").src = img.src;
-      current.classList.remove(currentClassName);
+      const img = this.createImg(nextElement);
+      this.addClass(img, currentClassName);
+      this.removeClass(img, current, currentClassName);
     }
   }
 
   onImagePrev(event) {
     console.log(this, "onImagePrev");
-    //const currentClassName = "js-slider__thumbs-image--current";
-    //const current = this.querySelector(`.${currentClassName}`);
-    // const parentCurrent = current.parentElement;
-    const parentCurrent = this.createParentCurrent();
+    const currentClassName = "js-slider__thumbs-image--current";
+    const current = document.querySelector(`.${currentClassName}`);
+    const parentCurrent = current.parentElement;
     const prevElement = parentCurrent.previousElementSibling;
     if (
       prevElement &&
       !prevElement.className.includes("js-slider__thumbs-item--prototype")
     ) {
-      const img = prevElement.querySelector("img");
-      img.classList.add(currentClassName);
-
-      this.querySelector(".js-slider__image").src = img.src;
-      current.classList.remove(currentClassName);
+      const img = this.createImg(prevElement);
+      this.addClass(img, currentClassName);
+      this.removeClass(img, current, currentClassName);
     }
+  }
+
+  createImg(element) {
+    const img = element.querySelector("img");
+    return img;
+  }
+
+  addClass(img, currentClassName) {
+    return img.classList.add(currentClassName);
+  }
+
+  removeClass(img, currentClass, currentClassName) {
+    document.querySelector(".js-slider__image").src = img.src;
+    return currentClass.classList.remove(currentClassName);
   }
 
   onClose(event) {
     event.currentTarget.classList.remove("js-slider--active");
-    const thumbsList = this.querySelectorAll(
+    const thumbsList = document.querySelectorAll(
       ".js-slider__thumbs-item:not(.js-slider__thumbs-item--prototype)"
     );
+
     thumbsList.forEach((item) => item.parentElement.removeChild(item));
   }
 }

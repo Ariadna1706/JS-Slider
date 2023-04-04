@@ -8,6 +8,8 @@ module.exports = {
     filename: "script.min.js",
   },
 
+  devtool: "source-map",
+
   devServer: {
     static: "./",
   },
