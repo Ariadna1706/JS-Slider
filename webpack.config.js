@@ -20,6 +20,16 @@ module.exports = {
         exclude: /node_modules/,
         use: "babel-loader",
       },
+      {
+        test: /\.css$/,
+        // określam jakie pliki
+        // będą brane pod uwagę
+        exclude: /node_modules/,
+        // określam wykluczenia
+        use: ["style-loader", "css-loader"],
+        // określam jaki [loader]
+        // ma być wykorzystany
+      },
     ],
   },
   plugins: [

@@ -1,3 +1,5 @@
+
+import "./../css/style.css"
 import JSSlider from "../modules/JSSlider";
 
 const init = () => {
